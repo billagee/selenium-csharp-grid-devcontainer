@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  selenium-client:
+    image: mcr.microsoft.com/dotnet/sdk:8.0-jammy
+
+    volumes:
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/workspace:cached
+    environment:
+      # Equip the client container with env vars for the grid server's hostname and port
+      - GRIDHOST=selenium-server
+      - GRIDPORT=4444
+    depends_on:
+      - selenium-server
+
+    # Keep the container running after launch
+    command: /bin/sh -c "while sleep 1000; do :; done"
+ 
+  selenium-server:
+    # See docs at https://github.com/SeleniumHQ/docker-selenium
+    # ( And https://www.selenium.dev/blog/2024/multi-arch-images-via-docker-selenium/)
+    #
+    # Use chromium image since it has arm64 platform support
+    image: selenium/standalone-chromium
+    shm_size: '2gb'
+    ports:
+      # Allow a VNC client on the host to connect to the container's VNC server
+      - "5900:5900"

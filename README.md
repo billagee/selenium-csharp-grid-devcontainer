@@ -1,8 +1,8 @@
 # selenium-csharp-grid-devcontainer
 
-Demo project that shows how to launch a `dotnet/sdk` dev container for VS Code with a Selenium Grid sidecar container.
+Demo project that shows how to launch a VS Code dev container based on `dotnet/sdk` with a Selenium Grid sidecar container.
 
-Useful for developing/debugging C# Selenium tests that are written to execute on a Grid server environment.
+This setup is useful for developing/debugging C# Selenium tests that are written to execute on a Grid server environment.
 
 The project files were created with the dotnet CLI:
 
